@@ -1,0 +1,11 @@
+inherited FrmLogin_iPhone4in: TFrmLogin_iPhone4in
+  ClientHeight = 548
+  ClientWidth = 320
+  Position = DefaultPosOnly
+  DesignerMasterStyle = 0
+  inherited Image1: TImage
+    MultiResBitmap.Height = 844
+    MultiResBitmap.Width = 490
+    Position.Y = -48.000000000000000000
+  end
+end

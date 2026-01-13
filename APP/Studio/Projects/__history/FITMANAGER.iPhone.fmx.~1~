@@ -1,0 +1,9 @@
+inherited FrmLogin_iPhone: TFrmLogin_iPhone
+  ClientHeight = 460
+  ClientWidth = 320
+  DesignerMasterStyle = 0
+  inherited Image1: TImage
+    MultiResBitmap.Height = 150
+    MultiResBitmap.Width = 100
+  end
+end

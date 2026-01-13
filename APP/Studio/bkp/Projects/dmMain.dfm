@@ -1,0 +1,19 @@
+object DataModule1: TDataModule1
+  Height = 480
+  Width = 640
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'User_Name=Admin'
+      'Database=FITMANAGER'
+      'ODBCDriver=ODBC Driver 18 for SQL Server'
+      'RDBMS=MSSQL'
+      
+        'ODBCAdvanced=SERVER=localhost;Trusted_Connection=Yes;APP=Enterpr' +
+        'ise/Architect;WSID=DESKTOP-VP333;TrustServerCertificate=Yes'
+      'Pooled=MSSQL'
+      'DriverID=ODBC')
+    LoginPrompt = False
+    Left = 168
+    Top = 120
+  end
+end

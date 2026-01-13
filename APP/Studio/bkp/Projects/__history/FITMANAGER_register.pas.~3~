@@ -1,0 +1,113 @@
+unit FITMANAGER_register;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit, FMX.DialogService,
+  DB, FITMANAGER_login;
+
+type
+  TFrmRegister = class(TForm)
+    register_template: TImage;
+    Button1: TButton;
+    Username_input: TEdit;
+    Name_input: TEdit;
+    Lname_input: TEdit;
+    JMBG_input: TEdit;
+    Email_input: TEdit;
+    Password_input: TEdit;
+    RepeatPass_input: TEdit;
+    Edit1: TEdit; // telefon
+    Button2: TButton; // register
+    procedure Button2Click(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    procedure GoToLogin;
+  public
+  end;
+
+var
+  FrmRegister: TFrmRegister;
+
+implementation
+
+{$R *.fmx}
+
+procedure TFrmRegister.GoToLogin;
+begin
+  if FrmLogin = nil then
+    FrmLogin := TFrmLogin.Create(Application);
+
+  FrmLogin.Show;
+  Self.Hide;
+end;
+
+procedure TFrmRegister.Button2Click(Sender: TObject);
+var
+  NameV, LnameV, UsernameV, EmailV, PassV, Pass2V, JMBGV, PhoneV: string;
+begin
+  NameV     := Trim(Name_input.Text);
+  LnameV    := Trim(Lname_input.Text);
+  UsernameV := Trim(Username_input.Text);
+  EmailV    := Trim(Email_input.Text);
+  PassV     := Password_input.Text;
+  Pass2V    := RepeatPass_input.Text;
+  JMBGV     := Trim(JMBG_input.Text);
+  PhoneV    := Trim(Edit1.Text);
+
+  if (NameV='') or (LnameV='') or (UsernameV='') or (EmailV='') or (PassV='') or
+     (Pass2V='') or (JMBGV='') or (PhoneV='') then
+  begin
+    ShowMessage('Popuni sva polja.');
+    Exit;
+  end;
+
+  if PassV <> Pass2V then
+  begin
+    ShowMessage('Lozinke se ne poklapaju.');
+    Exit;
+  end;
+
+  if dmDB = nil then
+  begin
+    ShowMessage('Baza nije u?itana (dmDB).');
+    Exit;
+  end;
+
+  if dmDB.RegisterUser(NameV, LnameV, UsernameV, PassV, EmailV, JMBGV, PhoneV) then
+  begin
+    ShowMessage('Registracija uspešna.');
+    GoToLogin;
+  end
+  else
+    ShowMessage('Registracija nije uspela. Proveri telefon (broj) ili da li ve? postoji Username/Email/JMBG.');
+end;
+
+procedure TFrmRegister.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := TCloseAction.caFree;
+  FrmRegister := nil;
+end;
+
+procedure TFrmRegister.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  TDialogService.MessageDialog(
+    'Da li ste sigurni da zelite da napustite aplikaciju?',
+    TMsgDlgType.mtConfirmation,
+    [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo],
+    TMsgDlgBtn.mbNo,
+    0,
+    procedure(const AResult: TModalResult)
+    begin
+      CanClose := (AResult = mrYes);
+      if CanClose then
+        Application.Terminate;
+    end
+  );
+end;
+
+end.
+

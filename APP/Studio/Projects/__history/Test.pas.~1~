@@ -1,0 +1,44 @@
+unit Test;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,dmMain, FireDAC.UI.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Phys, FireDAC.FMXUI.Wait, FireDAC.Phys.ODBC,
+  FireDAC.Phys.ODBCDef, FMX.Controls.Presentation, FMX.StdCtrls;
+
+type
+  TTestDataForm = class(TForm)
+    qTest: TFDQuery;
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  TestDataForm: TTestDataForm;
+
+implementation
+
+{$R *.fmx}
+
+procedure TTestDataForm.Button1Click(Sender: TObject);
+  var S: string;
+  begin
+    qTest.Close;
+    qTest.SQL.Text := 'SELECT * FROM [User]';
+    qTest.Open;
+
+    S := qTest.Fields[0].AsString;
+    ShowMessage(S);
+  end;
+
+end.
