@@ -12,18 +12,15 @@
 
 ## Kako pokrenuti program
 
-1. Kreirati bazu podataka pod nazivom `FITMANAGER` u Microsoft SQL Serveru
+1. Kreirati bazu podataka pod nazivom `FITMANAGER`
 
-2. Pokreni skriptu u SSMS-u:
-
-- database/create\_database.sql
+2. Pokreni skriptu u SSMS-u:  'database/create/_database.sql'
 
 3. Startuj aplikaciju FITMANAGER
 
 
 
 ### Podaci za prijavu 
-
 
 
 -	Administratori (Username: vlada, Password: vlada123, Email: vlada@gmail.com)
