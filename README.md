@@ -27,7 +27,7 @@
 
 -	Korisnici (Username: perica, Password: perica333, Email: pera@gmail.com,
 
-	           Username: janaJ, Password: jany333, Email: jana@gmail.com)
+	 Username: janaJ, Password: jany333, Email: jana@gmail.com)
 
 -	Treneri (Username: misaTrener, Password: misko231, Email: misa@gmail.com ) 
 
