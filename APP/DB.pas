@@ -191,5 +191,28 @@ begin
   end;
 end;
 
+function TdmDB.GetAllTrainers: TFDQuery;
+var
+  Q: TFDQuery;
+begin
+  EnsureConnected;
+
+  Q := TFDQuery.Create(nil);
+  Q.Connection := DbConnect;
+
+  Q.SQL.Text :=
+    'SELECT ' +
+    ' u.Username, u.Email, u.Phone, u.Status, i.Specialization ' +
+    'FROM instructor i ' +
+    'JOIN `user` u ON i.`User` = u.ID_User ' +
+    'WHERE u.Status = ''Aktivan'' ' +
+    'ORDER BY u.Username';
+
+  Q.Open;
+  Result := Q;
+end;
+
+end.
+
 end.
 
