@@ -1,0 +1,26 @@
+# Delphi / RAD Studio
+Win32/
+Win64/
+
+# Build output
+Debug/
+Release/
+
+# Compiled
+*.dcu
+*.exe
+*.dll
+
+# IDE / temporary
+*.local
+*.identcache
+__history/
+*.stat
+
+# Backup and temp
+*.~*
+*.bak
+*.tmp
+
+# macOS metadata (optional)
+.DS_Store
