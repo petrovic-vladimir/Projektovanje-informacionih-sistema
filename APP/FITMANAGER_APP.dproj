@@ -246,6 +246,30 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="FITMANAGER_roleSelect.pas">
+            <Form>FrmRoleSelect</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="FITMANAGER_memberHome.pas">
+            <Form>FrmMemberHome</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="FITMANAGER_trainerHome.pas">
+            <Form>FrmTrainerHome</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="FITMANAGER_memberPlanDetail.pas">
+            <Form>FrmMemberPlanDetail</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="FITMANAGER_adminHome.pas">
+            <Form>FrmAdminHome</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="FITMANAGER_adminProgramDetail.pas">
+            <Form>FrmAdminProgramDetail</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -293,6 +317,48 @@
                     </Platform>
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="assets\Template1.png" Configuration="Debug" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <RemoteDir>assets\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="assets\Template2.png" Configuration="Debug" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <RemoteDir>assets\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="assets\Template3.png" Configuration="Debug" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <RemoteDir>assets\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

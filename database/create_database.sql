@@ -49,10 +49,12 @@ CREATE TABLE plan_training (
     start_date TEXT NOT NULL,
     end_date TEXT NOT NULL,
     status TEXT NOT NULL,
-    program_id INTEGER NOT NULL,
+    program_id INTEGER,
     member_id INTEGER NOT NULL,
-    FOREIGN KEY(program_id) REFERENCES program_training(program_id),
-    FOREIGN KEY(member_id) REFERENCES member(member_id)
+    trainer_id INTEGER NOT NULL,
+    FOREIGN KEY(program_id) REFERENCES program_training(program_id) ON DELETE SET NULL,
+    FOREIGN KEY(member_id) REFERENCES member(member_id),
+    FOREIGN KEY(trainer_id) REFERENCES trainer(trainer_id)
 );
 
 CREATE TABLE schedule (
@@ -141,16 +143,16 @@ INSERT INTO program_training VALUES
 (109, 'Kardio zdravlje', 'Kontrolisani kardio treninzi za srce i opstu kondiciju.', 'Kardio', 'Kardiovaskularno zdravlje', 'Aktivan');
 
 INSERT INTO plan_training VALUES
-(200, 'Osnovna snaga - Aleksandar', 'Sigurna tehnika cucnja, potiska i mrtvog dizanja', 16, 60, '2026-05-01', '2026-07-15', 'Aktivan', 100, 300),
-(201, 'Redukcija - Milica', 'Postepeno smanjenje masnog tkiva uz pracenje pulsa', 18, 50, '2026-05-01', '2026-07-20', 'Aktivan', 101, 301),
-(202, 'Hipertrofija - Nikola', 'Povecanje misicne mase uz progresivno opterecenje', 20, 65, '2026-05-02', '2026-08-01', 'Aktivan', 102, 302),
-(203, 'Kondicija - Jelena', 'Intervalni rad i stabilan napredak izdrzljivosti', 14, 45, '2026-05-02', '2026-07-05', 'Aktivan', 103, 303),
-(204, 'Pilates - Marko', 'Stabilnost trupa i rasterecenje donjih ledja', 12, 45, '2026-05-03', '2026-06-30', 'Pauziran', 104, 304),
-(205, 'Mobilnost - Ana', 'Rad na mobilnosti kukova i ramenog pojasa', 10, 40, '2026-05-03', '2026-06-25', 'Aktivan', 105, 305),
-(206, 'Funkcionalni rad - Stefan', 'Jacanje celog tela kroz pokrete vise zglobova', 16, 55, '2026-05-04', '2026-07-18', 'Aktivan', 106, 306),
-(207, 'Korektivni plan - Katarina', 'Posturalne vezbe i kontrola lopatica', 12, 45, '2026-05-04', '2026-07-01', 'Aktivan', 107, 307),
-(208, 'Sportska priprema - Luka', 'Eksplozivnost, agilnost i prevencija povreda', 18, 60, '2026-05-05', '2026-08-05', 'Neaktivan', 108, 308),
-(209, 'Kardio plan - Sara', 'Kontrolisani kardio i pracenje zone pulsa', 14, 45, '2026-05-05', '2026-07-12', 'Aktivan', 109, 309);
+(200, 'Osnovna snaga - Aleksandar', 'Sigurna tehnika cucnja, potiska i mrtvog dizanja', 16, 60, '2026-05-01', '2026-07-15', 'Aktivan', 100, 300, 400),
+(201, 'Redukcija - Milica', 'Postepeno smanjenje masnog tkiva uz pracenje pulsa', 18, 50, '2026-05-01', '2026-07-20', 'Aktivan', 101, 301, 404),
+(202, 'Hipertrofija - Nikola', 'Povecanje misicne mase uz progresivno opterecenje', 20, 65, '2026-05-02', '2026-08-01', 'Aktivan', 102, 302, 400),
+(203, 'Kondicija - Jelena', 'Intervalni rad i stabilan napredak izdrzljivosti', 14, 45, '2026-05-02', '2026-07-05', 'Aktivan', 103, 303, 402),
+(204, 'Pilates - Marko', 'Stabilnost trupa i rasterecenje donjih ledja', 12, 45, '2026-05-03', '2026-06-30', 'Pauziran', 104, 304, 401),
+(205, 'Mobilnost - Ana', 'Rad na mobilnosti kukova i ramenog pojasa', 10, 40, '2026-05-03', '2026-06-25', 'Aktivan', 105, 305, 405),
+(206, 'Funkcionalni rad - Stefan', 'Jacanje celog tela kroz pokrete vise zglobova', 16, 55, '2026-05-04', '2026-07-18', 'Aktivan', 106, 306, 406),
+(207, 'Korektivni plan - Katarina', 'Posturalne vezbe i kontrola lopatica', 12, 45, '2026-05-04', '2026-07-01', 'Aktivan', 107, 307, 407),
+(208, 'Sportska priprema - Luka', 'Eksplozivnost, agilnost i prevencija povreda', 18, 60, '2026-05-05', '2026-08-05', 'Neaktivan', 108, 308, 408),
+(209, 'Kardio plan - Sara', 'Kontrolisani kardio i pracenje zone pulsa', 14, 45, '2026-05-05', '2026-07-12', 'Aktivan', 109, 309, 409);
 
 INSERT INTO schedule VALUES
 (500, '2026-05-11', '08:00', '09:00', 'Potvrdjen', 'Prvi termin za proveru tehnike', 200),
@@ -200,7 +202,10 @@ INSERT INTO reports VALUES
 (808, 'Otkazan sportski termin', 'Prisustvo', '2026-05-15 11:00', '2026-05-15 12:00', '2026-05-15', 'Termin otkazan, bez realizovanih aktivnosti.', 708),
 (809, 'Kardio izvestaj', 'Performanse', '2026-05-15 19:00', '2026-05-15 19:45', '2026-05-15', 'Clan odrzao ciljnu zonu pulsa tokom celog treninga.', 709);
 
-INSERT OR REPLACE INTO sqlite_sequence(name, seq) VALUES
+DELETE FROM sqlite_sequence
+WHERE name IN ('program_training', 'plan_training', 'member', 'trainer', 'schedule', 'training', 'records', 'reports');
+
+INSERT INTO sqlite_sequence(name, seq) VALUES
 ('program_training', 109),
 ('plan_training', 209),
 ('member', 309),
